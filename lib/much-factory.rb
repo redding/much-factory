@@ -1,7 +1,7 @@
 require "much-factory/version"
 
-require 'date'
-require 'time'
+require "date"
+require "time"
 
 module MuchFactory
   extend self
@@ -82,21 +82,22 @@ module MuchFactory
     self.type_converter.send(type, value)
   end
 
-  def type_converter; TypeConverter; end
+  def type_converter
+    TypeConverter
+  end
 
   module TypeConverter
-    def self.string(input);    input.to_s;                 end
-    def self.integer(input);   input.to_i;                 end
-    def self.float(input);     input.to_f;                 end
-    def self.datetime(input);  DateTime.parse(input.to_s); end
-    def self.time(input);      Time.parse(input.to_s);     end
-    def self.date(input);      Date.parse(input.to_s);     end
-    def self.boolean(input);   !!input;                    end
-    def self.binary(input);    input;                      end
+    def self.string(input);   input.to_s;                 end
+    def self.integer(input);  input.to_i;                 end
+    def self.float(input);    input.to_f;                 end
+    def self.datetime(input); DateTime.parse(input.to_s); end
+    def self.time(input);     Time.parse(input.to_s);     end
+    def self.date(input);     Date.parse(input.to_s);     end
+    def self.boolean(input);  !!input;                    end
+    def self.binary(input);   input;                      end
   end
 
   module Random
-
     # rand given a max int value returns integers between 0 and max-1
     def self.integer(max = nil)
       rand(max || 32_766) + 1
@@ -119,14 +120,14 @@ module MuchFactory
       Time.now.strftime("%H:%M:%S")
     end
 
-    DICTIONARY = [*'a'..'z'].freeze
+    DICTIONARY = [*"a".."z"].freeze
     def self.string(length = nil)
       [*0..((length || 10) - 1)].map{ |n| DICTIONARY[rand(DICTIONARY.size)] }.join
     end
 
     def self.hex_string(length = nil)
       length ||= 10
-      self.integer(("f" * length).hex - 1).to_s(16).rjust(length, '0')
+      self.integer(("f" * length).hex - 1).to_s(16).rjust(length, "0")
     end
 
     def self.file_name_string(length = nil)
@@ -153,9 +154,7 @@ module MuchFactory
     end
 
     def self.binary
-      [ self.integer(10000) ].pack('N*')
+      [ self.integer(10000) ].pack("N*")
     end
-
   end
-
 end

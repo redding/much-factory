@@ -7,7 +7,7 @@ Note: this was originally implemented in and extracted from [Assert](https://git
 ## Usage
 
 ```ruby
-require 'much-factory'
+require "much-factory"
 
 MuchFactory.integer    #=> 15742
 MuchFactory.integer(3) #=> 2
@@ -54,7 +54,7 @@ end
 
 Add this line to your application's Gemfile:
 
-    gem 'much-factory'
+    gem "much-factory"
 
 And then execute:
 

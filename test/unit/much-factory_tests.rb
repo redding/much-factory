@@ -1,10 +1,9 @@
-require 'assert'
-require 'much-factory'
+require "assert"
+require "much-factory"
 
-require 'test/support/factory'
+require "test/support/factory"
 
 module MuchFactory
-
   class UnitTests < Assert::Context
     desc "MuchFactory"
     subject{ MuchFactory }
@@ -97,7 +96,7 @@ module MuchFactory
 
     should "return a random folder path string using `dir_path`" do
       assert_kind_of String, subject.dir_path
-      path_segments = subject.dir_path.split('/')
+      path_segments = subject.dir_path.split("/")
       assert_equal 3, path_segments.size
       path_segments.each{ |s| assert_match /\A[a-z]{4}\Z/, s }
     end
@@ -108,7 +107,7 @@ module MuchFactory
 
     should "return a random folder path and file name using `file_path`" do
       assert_kind_of String, subject.file_path
-      segments = subject.file_path.split('/')
+      segments = subject.file_path.split("/")
       assert_equal 4, segments.size
       segments[0..-2].each{ |s| assert_match /\A[a-z]{4}\Z/, s }
       assert_match /\A[a-z]{6}\.[a-z]{3}\Z/, segments.last
@@ -116,7 +115,7 @@ module MuchFactory
 
     should "return a random url string using `url`" do
       u = subject.url
-      segments = u.split('/')
+      segments = u.split("/")
 
       assert_kind_of String, u
       assert_match /\A\//, u
@@ -130,7 +129,7 @@ module MuchFactory
     end
 
     should "allow passing a maximum length using `url`" do
-      assert_equal 2, subject.url('', 1).length # plus leading '/'
+      assert_equal 2, subject.url("", 1).length # plus leading "/"
     end
 
     should "return a random email string using `email`" do
@@ -140,12 +139,12 @@ module MuchFactory
     end
 
     should "allow passing a custom domain to `email`" do
-      e = subject.email('example.org')
+      e = subject.email("example.org")
       assert_match /@example\.org\Z/, e
     end
 
     should "allow passing a mailbox length using `email`" do
-      assert_equal 2, subject.email(nil, 2).split('@').first.size
+      assert_equal 2, subject.email(nil, 2).split("@").first.size
     end
 
     should "return a random binary string using `binary`" do
@@ -157,14 +156,12 @@ module MuchFactory
     end
 
     should "type cast values to a specified type using `type_cast`" do
-      expected = Date.parse('2013-01-01')
-      assert_equal expected, subject.type_cast('2013-01-01', :date)
+      expected = Date.parse("2013-01-01")
+      assert_equal expected, subject.type_cast("2013-01-01", :date)
     end
 
     should "use `TypedConverter` for the default type converter" do
       assert_equal TypeConverter, subject.type_converter
     end
-
   end
-
 end
