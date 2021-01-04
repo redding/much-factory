@@ -36,6 +36,10 @@ module MuchFactory
     self.type_cast(Random.string(length || 10), :string)
   end
 
+  def symbol(*args)
+    self.string(*args).to_sym
+  end
+
   def text(length = nil)
     self.type_cast(Random.string(length || 20), :string)
   end

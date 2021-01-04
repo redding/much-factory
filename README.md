@@ -20,6 +20,8 @@ MuchFactory.datetime   #=> #<DateTime: 302518290593/43200,0,2299161>
 
 MuchFactory.string     #=> "boxsrbazeq"
 MuchFactory.string(3)  #=> "rja"
+MuchFactory.symbol     #=> :sfdhortksj
+MuchFactory.symbol(3)  #=> :emh
 MuchFactory.text       #=> "khcwyizmymajfzzxlfwz"
 MuchFactory.text(3)    #=> "qcy"
 MuchFactory.slug       #=> "licia"
