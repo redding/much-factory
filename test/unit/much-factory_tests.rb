@@ -10,7 +10,7 @@ module MuchFactory
 
     should have_imeths :integer, :float
     should have_imeths :date, :time, :datetime
-    should have_imeths :string, :text, :slug, :hex
+    should have_imeths :string, :symbol, :text, :slug, :hex
     should have_imeths :file_name, :dir_path, :file_path
     should have_imeths :path, :url, :email
     should have_imeths :binary, :boolean
@@ -49,13 +49,22 @@ module MuchFactory
       assert_that(subject.datetime).is_kind_of(DateTime)
     end
 
-    should "return a random string using `string`" do
-      assert_that(subject.string).is_kind_of String
+    should "return a random String using `string`" do
+      assert_that(subject.string).is_kind_of(String)
       assert_that(subject.string.length).equals(10)
     end
 
     should "allow passing a maximum length using `string`" do
       assert_that(subject.string(1).length).equals(1)
+    end
+
+    should "return a random Symbol using `symbol`" do
+      assert_that(subject.symbol).is_kind_of(Symbol)
+      assert_that(subject.symbol.length).equals(10)
+    end
+
+    should "allow passing a maximum length using `symbol`" do
+      assert_that(subject.symbol(1).length).equals(1)
     end
 
     should "return a random string using `text`" do
