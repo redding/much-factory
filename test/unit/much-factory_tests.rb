@@ -129,14 +129,14 @@ module MuchFactory
       segments = u.split("/")
 
       assert_that(u).is_kind_of(String)
-      assert_that(u).matches(/\A\//)
+      assert_that(u).matches(%r{\A/})
       assert_that(segments.size).equals(4)
       segments[1..-1].each{ |s| assert_that(s).matches(/\A[a-z]{4}\Z/) }
     end
 
     should "allow passing a host string using `url`" do
       host = "example.com"
-      assert_that(subject.url(host)).matches(/\A#{host}\//)
+      assert_that(subject.url(host)).matches(%r{\A#{host}/})
     end
 
     should "allow passing a maximum length using `url`" do
