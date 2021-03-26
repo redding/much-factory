@@ -39,6 +39,14 @@ module MuchFactory
       assert_that(float).equals(0.0)
     end
 
+    should "allow passing a precision using `float`" do
+      float = subject.float(2, precision: 2)
+      assert_that((float * 100).round / 100.0).equals(float)
+
+      float = subject.float(0, precision: 2)
+      assert_that(float).equals(0.00)
+    end
+
     should "return a random date using `date`" do
       assert_that(subject.date).is_kind_of(Date)
     end
