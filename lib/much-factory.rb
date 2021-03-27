@@ -12,8 +12,9 @@ module MuchFactory
     type_cast(Random.integer(max), :integer)
   end
 
-  def float(max = nil)
-    type_cast(Random.float(max), :float)
+  def float(max = nil, precision: Factory.integer(5))
+    factor = (10 ** precision).to_f
+    (type_cast(Random.float(max), :float) * factor).round / factor
   end
 
   DAYS_IN_A_YEAR = 365
