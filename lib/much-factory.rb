@@ -13,7 +13,7 @@ module MuchFactory
   end
 
   def float(max = nil, precision: Factory.integer(5))
-    factor = (10 ** precision).to_f
+    factor = (10**precision).to_f
     (type_cast(Random.float(max), :float) * factor).round / factor
   end
 
